@@ -1,1 +1,2 @@
-This is a readme file.
+- My alias for this class in "H3" is...
+- Cookie Monster, Paper, Regular Human
