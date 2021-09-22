@@ -1,2 +1,3 @@
-- My alias for this class in "H3" is...
+- https://github.com/Mikokokokoto/smart_and_healthy_buildings
+- My alias for this class in "H3" is... ###H3 Daniel
 - Cookie Monster, Paper, Regular Human
