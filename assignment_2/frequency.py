@@ -3,5 +3,56 @@ import utility as util
 from datetime import datetime
 import numpy as np
 
+import matplotlib.pyplot as plt
+
 if __name__ == "__main__":
-    print('Hello')
+
+    # d = {'1':0, "2":3}
+    # d['5'] = 3
+    # print(d)    
+
+    d = {}
+
+    s = datetime(2021,9,20)
+    e = datetime(2021,9,23)
+    df = pd.read_csv("book_with_grids.csv")
+    grids = [80, 81, 82, 83, 84, 85, 100, 101, 102, 103, 104, 105]
+
+    for grid in grids:
+        fields = []
+        locations = df[df['grid']==grid]
+        for row in locations.iterrows():
+            lst = row[1].fields.split(',')
+            for element in lst:
+                if element not in fields:
+                    fields.append(element)
+        count = 0
+        for field in fields:
+            ldf = util.get_lfdf(field, s, e, list(df[df['grid']==grid]['device_id']))
+            count += len(ldf)
+
+        d[str(grid)] = count
+
+    print(d)
+    stats = pd.Series(data=d)
+    print(stats)
+
+    stats.plot(kind='bar')
+    
+    export_filepath = './img'
+    filepath = f"{export_filepath}/frequency.png"
+    plt.savefig(filepath)
+
+
+
+
+    # grids = df[df['grid'].isin(grid_range)]
+    # for row in grids.iterrows():
+    #     lst = row[1].fields.split(',')
+    #     for element in lst:
+    #         if element not in fields:
+    #             fields.append(element)
+
+    # for field in fields:
+    #     ldf = util.get_lfdf(field, s, e, list(df[df['grid'].isin(grid_range)]['device_id']))
+    #     print(len(ldf))
