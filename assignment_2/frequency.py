@@ -32,27 +32,10 @@ if __name__ == "__main__":
             count += len(ldf)
 
         d[str(grid)] = count
-
-    print(d)
+        
     stats = pd.Series(data=d)
-    print(stats)
-
-    stats.plot(kind='bar')
+    stats.plot(kind='bar', xlabel='grids', ylabel='count')
     
     export_filepath = './img'
     filepath = f"{export_filepath}/frequency.png"
     plt.savefig(filepath)
-
-
-
-
-    # grids = df[df['grid'].isin(grid_range)]
-    # for row in grids.iterrows():
-    #     lst = row[1].fields.split(',')
-    #     for element in lst:
-    #         if element not in fields:
-    #             fields.append(element)
-
-    # for field in fields:
-    #     ldf = util.get_lfdf(field, s, e, list(df[df['grid'].isin(grid_range)]['device_id']))
-    #     print(len(ldf))
