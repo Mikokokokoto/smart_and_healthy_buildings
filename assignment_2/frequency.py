@@ -7,14 +7,10 @@ import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
 
-    # d = {'1':0, "2":3}
-    # d['5'] = 3
-    # print(d)    
-
     d = {}
 
     s = datetime(2021,9,20)
-    e = datetime(2021,9,23)
+    e = datetime(2021,9,21)
     df = pd.read_csv("book_with_grids.csv")
     grids = [80, 81, 82, 83, 84, 85, 100, 101, 102, 103, 104, 105]
 
@@ -29,7 +25,8 @@ if __name__ == "__main__":
         count = 0
         for field in fields:
             ldf = util.get_lfdf(field, s, e, list(df[df['grid']==grid]['device_id']))
-            count += len(ldf)
+            if isinstance(ldf, pd.DataFrame):
+                count += len(ldf)
 
         d[str(grid)] = count
         
